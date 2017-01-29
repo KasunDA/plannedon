@@ -20,28 +20,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group hidden">
-                            <div class="input-group input-group-lg" id="inputTime"> 
-                                <div class="btn-group" data-toggle="buttons" id="time-frame">
-                                    <label class="btn btn-info active">
-                                        <input type="radio" name="frame" value="Morning" checked> Morning
-                                    </label>
-                                    <label class="btn btn-info">
-                                        <input type="radio" name="frame" value="Afternoon"> Afternoon
-                                    </label>
-                                    <label class="btn btn-info">
-                                        <input type="radio" name="frame" value="Evening"> Evening
-                                    </label>
-                                    <label class="btn btn-info">
-                                        <input type="radio" name="frame" value="Late"> Late
-                                    </label>
-                                    <label class="btn btn-info">
-                                        <input type="radio" name="frame" value="Any"> Any
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <div class="input-group input-group-lg" id="inputTime">
                                 <div class="input-group-addon">@</div>
@@ -58,13 +36,33 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="input-group input-group-lg" id="deleteActivity">
-                                <button type="button" id="activity-delete" class="btn btn-danger" data-dismiss="modal">Delete Activity</button>
+                            <div class="input-group input-group-lg" id="inputRepeat">
+                                <div class="btn-group" data-toggle="buttons" id="repeatGroup">
+                                    <label class="btn btn-info active">
+                                        <input type="checkbox" autocomplete="off" name="repeat" checked> Repeat Every
+                                    </label>
+                                    <label class="btn btn-default active">
+                                        <input type="radio" name="frame" value="Day"> Day
+                                    </label>
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="frame" value="Week"> Week
+                                    </label>
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="frame" value="Weeks"> 2 Weeks
+                                    </label>
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="frame" value="Month"> Month
+                                    </label>
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="frame" value="Year"> Year
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" id="activity-delete" class="btn btn-danger" data-dismiss="modal">Delete Activity</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" id="activity-submit" class="btn btn-primary" data-dismiss="modal">Add</button>
                     <button type="button" id="activity-update" class="btn btn-primary hidden" data-dismiss="modal">Update</button>
@@ -72,9 +70,6 @@
             </div>
         </div>
     </div>
-<!--
-    <button type="button" class="btn btn-primary" id="add-btn" data-toggle="modal" data-index="0" data-target="#activityModal" data-whatever=""><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Activity</button>
--->
 
         <!-- weekly view (previous) -->
         <?php for($i = 0; $i < $weeks_to_show; $i++) : ?>

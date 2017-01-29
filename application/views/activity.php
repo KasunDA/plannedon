@@ -1,5 +1,5 @@
 <html><body>
-<div id="<?=$user;?>" data-start="<?=$start;?>" data-end="<?=$end;?>">
+<div id="user-crap" data-user="<?=$user;?>" data-start="<?=$start;?>" data-end="<?=$end;?>">
 <?php while ($datedata = each($payload)) : ?>
     <div class="date" data-value="<?php echo $datedata["key"]; ?>">
         <?php while ($activities = each($datedata["value"])) : ?>

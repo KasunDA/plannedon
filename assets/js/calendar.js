@@ -44,13 +44,13 @@ $( document ).ready(function()
             
             if (EditingActivityInfo.activityIndex > 0)
             {
-                $(this).find('.modal-body #activity-delete').removeClass("hidden");
+                $(this).find('.modal-footer #activity-delete').removeClass("hidden");
                 $(this).find('.modal-footer #activity-update').removeClass("hidden");
                 $(this).find('.modal-footer #activity-submit').addClass("hidden");
             }
             else
             {
-                $(this).find('.modal-body #activity-delete').addClass("hidden");
+                $(this).find('.modal-footer #activity-delete').addClass("hidden");
                 $(this).find('.modal-footer #activity-update').addClass("hidden");
                 $(this).find('.modal-footer #activity-submit').removeClass("hidden");
             }
@@ -271,15 +271,21 @@ $( document ).ready(function()
         }
     ).disableSelection();
 
-    // fetch activities /calendar/get(start, end)
-    var dates = calcDates();
+    //var dates = calcDates();
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    var fetchData =
+    {
+        "today": dateToString(today)
+    };
 
     $.ajax(
         {
             url: "/calendar/get",
             success: function(result)
             {
-                buildCalendar($.parseHTML(result.trim()), dates);               
+                buildCalendar($.parseHTML(result.trim()));
             },
             error: function()
             {
@@ -289,8 +295,7 @@ $( document ).ready(function()
             cache: false,
             data:
             {
-                start: dateToString(dates[0]),
-                end: dateToString(dates[dates.length-1])
+                activityData: fetchData
             },
             dataType: 'html'
         }
@@ -352,7 +357,7 @@ function populateOrdering(targetDayId, orderingArray, excludeId)
     );
  }
 
-function calcDates()
+function calcDates(start, end)
 {
     var dt = new Date();
     dt.setHours(0, 0, 0, 0);
@@ -406,14 +411,17 @@ function addActivityToListGroup(listGroup, index, time, activity, order, emph = 
     addBtn.data("order", orderAsInt + 1);
 }
 
- function buildCalendar(activityHtml, dates)
+ function buildCalendar(activityHtml)
  {
         var months = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
         var dayIdLookup = new Array("#sun-", "#mon-", "#tue-", "#wed-", "#thu-", "#fri-", "#sat-");
         var dayAbbrLookup = new Array("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat");
-        var today = new Date();
-        var datesLength = dates.length; 
+        var today = new Date(); 
         var dataHtml = $("<html/>").html(activityHtml);  
+        var userCrap = dataHtml.find("div[id='user-crap']");
+
+        var dates = calcDates(userCrap.attr("data-start"), userCrap.attr("data-end"));
+        var datesLength = dates.length;
 
         today.setHours(0, 0, 0, 0);     
 

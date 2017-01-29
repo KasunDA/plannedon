@@ -24,17 +24,14 @@ class Calendar extends MY_Controller
 
 	public function get()
 	{
-		$start = $this->input->post("start");
-		$end = $this->input->post("end");
-
-		if (empty($start) || empty($end))
-		{
-			return;
-		}
-
 		$this->load->model("Activity");
 
-		$result = $this->Activity->get($start, $end, $this->UserData["email"]);
+		$result = $this->Activity->get($this->input->post("activityData"), $this->UserData["email"]);
+
+		if ($result === FALSE)
+		{
+			return(FALSE);
+		}
 
 		$this->load->view("activity", $result);
 	}

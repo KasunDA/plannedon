@@ -10,26 +10,46 @@ class Activity extends CI_Model
 	public $time;
 	public $activity;
 	public $sql;
+	private $DaysToGet;
 
 	public function __construct()
 	{
 		$this->load->database();
+
+		$this->DaysToGet = 9 * 7 - 1;
 	}
 
-	public function get($start, $end, $user_email)
+	public function get($activityData, $user_email)
 	{
-		// select * from activity where user_email="email" and date>=start and date<=end order by date ASC;
+		if (empty($activityData) || empty($activityData["today"]) || empty($user_email))
+        {
+            return(FALSE);
+        }
 
-		$this->db->where("date >=", $this->slashesToDashes($start));
-		$this->db->where("date <=", $this->slashesToDashes($end));
+		$today = getdate(strtotime($activityData["today"]));
+		$daysSinceLastMonday = $today["wday"] + 6;
+
+		if ($today["wday"] == 0)
+		{
+			$daysSinceLastMonday += 7;
+		}
+
+		$start = DateTime::createFromFormat('m/d/Y', $activityData["today"]);
+		$start->sub(new DateInterval("P".$daysSinceLastMonday."D"));
+
+		$end = DateTime::createFromFormat('m/d/Y', $start->format('n/j/Y'));
+		$end->add(new DateInterval("P".$this->DaysToGet."D"));
+
+		$this->db->where("date >=", $start->format("Y-n-j"));
+		$this->db->where("date <=", $end->format("Y-n-j"));
 		$this->db->where("user_email", $user_email);
 		$this->db->order_by("rel_order", "ASC");
 		$query = $this->db->get("activity");
 
 		$activities = array(
 			"user" => $user_email,
-			"start" => $start,
-			"end" => $end,
+			"start" => $start->format("n/j/Y"),
+			"end" => $end->format("n/j/Y"),
 			"payload" => array()
 		);
 

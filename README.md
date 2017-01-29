@@ -1,4 +1,4 @@
-# Planned On
+# Planned On v0.5
 
 Hello. Planned On is a linear calendar app for smart people with important crap to do. It's way less restrictive than a typical calendar app, in that it doesn't force you to schedule things based on time. So that makes it better. Suck it.  
 
@@ -18,9 +18,9 @@ AWS Elastic Beanstalk and RDS (MySQL)
 * "Genericize" controllers to eliminate repeated code
 * Ability to repeat something for X days/weeks/months
 * Better error handling and data passing around  
+* Marketing (slicker landing page, more images)  
 * How to use, walkthrough
 * More info on how to plan effectively, and why it's good for us modern humans with shit to do (a, "This is how I use Planned On And Why" series)
-* Marketing (slicker landing page, more images)
 * Toggle public/private
 
 * Create an iphone app
