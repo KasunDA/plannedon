@@ -15,8 +15,8 @@ AWS Elastic Beanstalk and RDS (MySQL)
 
 ## Coming Soon, or Sometime
 
-* "Genericize" controllers to eliminate repeated code
 * Ability to repeat something for X days/weeks/months
+* Remove the previous week, or make it configurable
 * Better error handling and data passing around  
 * Marketing (slicker landing page, more images)  
 * How to use, walkthrough

@@ -2,6 +2,8 @@
 
 class Calendar extends MY_Controller 
 {
+	private $data = null;
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -10,6 +12,9 @@ class Calendar extends MY_Controller
         {
             redirect("/login");
         }
+
+		$this->data = $this->input->post("activityData");
+		$this->load->model("Activity");
 	}
 
 	public function index()
@@ -24,9 +29,7 @@ class Calendar extends MY_Controller
 
 	public function get()
 	{
-		$this->load->model("Activity");
-
-		$result = $this->Activity->get($this->input->post("activityData"), $this->UserData["email"]);
+		$result = $this->Activity->get($this->data, $this->UserData["email"]);
 
 		if ($result === FALSE)
 		{
@@ -38,54 +41,42 @@ class Calendar extends MY_Controller
 
 	public function add()
 	{
-		$data = $this->input->post("activityData");
+		$this->data["user_email"] = $this->UserData["email"];
 
-		$this->load->model("Activity");
-
-		$data["user_email"] = $this->UserData["email"];
-
-		$result = $this->Activity->add($data);
+		$result = $this->Activity->add($this->data);
 
 		if ($result == FALSE)
 		{
 			return;
 		}
 
-		$data["id"] = $this->Activity->id;
+		$this->data["id"] = $this->Activity->id;
 
-		echo json_encode($data);
+		echo json_encode($this->data);
 	}
 
 	public function update()
 	{
-		$data = $this->input->post("activityData");
-
-		$this->load->model("Activity");
-
-		$result = $this->Activity->update($data);
+		$result = $this->Activity->update($this->data);
 
 		if ($result == FALSE)
 		{
 			return;
 		}
 
-		echo json_encode($data);
+		echo json_encode($this->data);
 	}
 
 	public function remove()
 	{
-		$data = $this->input->post("activityData");
-
-		$this->load->model("Activity");
-
-		$result = $this->Activity->delete($data);
+		$result = $this->Activity->delete($this->data);
 
 		if ($result == FALSE)
 		{
 			return;
 		}
 
-		echo json_encode($data);
+		echo json_encode($this->data);
 	}
 
 }

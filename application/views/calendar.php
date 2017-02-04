@@ -38,10 +38,11 @@
                         <div class="form-group">
                             <div class="input-group input-group-lg" id="inputRepeat">
                                 <div class="btn-group" data-toggle="buttons" id="repeatGroup">
-                                    <label class="btn btn-info active">
-                                        <input type="checkbox" autocomplete="off" name="repeat" checked> Repeat Every
+                                    <label class="btn btn-info active" id="repeat-every-btn">
+                                        <input type="radio" autocomplete="off" name="repeat" checked> Don't Repeat
                                     </label>
-                                    <label class="btn btn-default active">
+                                    <!-- check 'active' class on label for which one is clicked -->
+                                    <label class="btn btn-default">
                                         <input type="radio" name="frame" value="Day"> Day
                                     </label>
                                     <label class="btn btn-default">
