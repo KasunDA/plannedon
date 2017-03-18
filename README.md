@@ -18,7 +18,6 @@ These are the services employed:
 
 ## Technologies
 
-Ember.js  
 jQuery  
 Bootstrap  
 Parsley javascript form validation  
