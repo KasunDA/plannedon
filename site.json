@@ -1,36 +1,9 @@
 {
-    "meta": // things like css and javascript that are common throughout
+    "localport": 7575,
+    "deployto": "deploy",
+    "sitewidevariables":
     {
-        "css": [ "assets/css/bootstrap.min.css" ],
-        "js": [
-            {
-                "where": "body",
-                "source": "assets/js/jquery-3.1.1.min.js"
-            },
-            {
-                "where": "body",
-                "source": "assets/js/bootstrap.min.js"
-            }
-        ]
-    }, 
-    "widgets": [
-        {
-            "name": "nav",
-            "source": "widgets/nav_widget.html",
-            "data": {},
-            "resources": {}
-        }
-    ],
-    "pages": [
-        {
-            "route": "/",
-            "target": "index.html",
-            "widgets": [ "nav" ]
-        },
-        {
-            "route": "/login",
-            "target": "index.html",
-            "widgets": [ "nav" ]
-        }
-    ]
+        "sitename": "Planned On",
+        "version": "0.5"
+    }
 }

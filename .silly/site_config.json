@@ -1,4 +1,6 @@
 {
     "sitename": "plannedon",
-    "entrypoint": "site.json"
+    "entrypoint": "site.json",
+    "widgets": "widgets",
+    "routes": "routes"
 }
